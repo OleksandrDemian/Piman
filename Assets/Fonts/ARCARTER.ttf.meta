@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c00470e2f06c5354881e4cff7842f0f2
+timeCreated: 1500466808
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: AR CARTER
+  fontNames:
+  - AR CARTER
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

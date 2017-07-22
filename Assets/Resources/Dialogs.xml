@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<dialogs>
+
+  <dialog id="startdialog">
+    <frase person="Jenny">
+      <text lang="en">Hi Piman!</text>
+    </frase>
+    <frase person="Jenny">
+      <text lang="en">Aliens are going to get you dead or alive!</text>
+    </frase>
+    <frase person="George">
+      <text lang="en">Use your knowladge of math and survie, we gonna find some way to help you!</text>
+    </frase>
+  </dialog>
+
+  <dialog id="pimandead">
+    <frase person="Alfa Alien">
+      <text lang="en">YAAAAAS! Finaly I'm the best mathematician in the universe</text>
+    </frase>
+    <frase person="Jenny">
+      <text lang="en">NOOOOO!</text>
+    </frase>
+    <frase person="Jenny">
+      <text lang="en">PIMAN!!!</text>
+    </frase>
+    <frase person="George">
+      <text lang="en">He did his best ...</text>
+    </frase>
+  </dialog>
+
+</dialogs>

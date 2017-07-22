@@ -1,0 +1,13 @@
+<waves>
+
+  <wave id="0">
+    <enemy type="0" qta="5" />
+    <enemy type="1" qta ="3" />
+  </wave>
+  
+  <wave id="1">
+    <enemy type="0" qta="8" />
+    <enemy type="1" qta ="1" />
+  </wave>
+
+</waves>
