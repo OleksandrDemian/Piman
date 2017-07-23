@@ -24,10 +24,7 @@ public class DialogWindow : MonoBehaviour
     {
         Frase frase = dialog.GetNextFrase();
         if (frase == null)
-        {
-            Close();
             return;
-        }
 
         personName.text = frase.PersonName;
         text.text = frase.Text;
@@ -51,7 +48,7 @@ public class DialogWindow : MonoBehaviour
 		
 	}
 
-    private void Close()
+    public void Close()
     {
         gameObject.SetActive(false);
     }

@@ -53,6 +53,8 @@ public class Bullet : MonoBehaviour, IPoolable
     {
         if (col.tag == "Player" && isPlayer)
             return;
+        if (col.tag == "Enemy" && !isPlayer)
+            return;
 
         ExplosionManager exp = ObjectPool.Get<ExplosionManager>();
         exp.Initialize(transform.position, 4);

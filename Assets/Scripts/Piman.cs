@@ -16,6 +16,8 @@ public class Piman : Character, IDamagable, IDamageListener
     private KeyCode fireKey;
     [SerializeField]
     private KeyCode jumpKey;
+    [SerializeField]
+    private ElementsBar healthBar;
 
     public static Piman Instance
     {
@@ -27,15 +29,8 @@ public class Piman : Character, IDamagable, IDamageListener
     {
         if (health.Value < 1)
             return;
-        //Jump(2);
-        //GameManager.Instance.GameOver();
+
         health.Value--;
-        if (health.Value < 1)
-        {
-            if (onDead != null)
-                onDead();
-            gameObject.SetActive(false);
-        }
     }
 
     private void Awake()
@@ -43,11 +38,23 @@ public class Piman : Character, IDamagable, IDamageListener
         Instance = this;
     }
 
+    private void OnHealthValueChange(int value, int oldValue)
+    {
+        healthBar.Set(value);
+        if (value < 1)
+        {
+            if (onDead != null)
+                onDead();
+            gameObject.SetActive(false);
+        }
+    }
+
     protected override void Start ()
     {
         base.Start();
 
         health = new Attribute(3);
+        health.onValueChange = OnHealthValueChange;
 
         damage = new PIDamage();
         fireHotspot = transform.FindChild("FireHotspot").GetComponent<FireHotspot>();
@@ -57,6 +64,9 @@ public class Piman : Character, IDamagable, IDamageListener
 	protected override void Update ()
     {
         base.Update();
+
+        if (transform.position.y < -13f)
+            health.Value = 0;
 
         float input = isShooting ? 0 : Input.GetAxis("Horizontal");
         //animator.SetFloat("speed", Mathf.Abs(input));

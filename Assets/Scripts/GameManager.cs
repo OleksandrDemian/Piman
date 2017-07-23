@@ -22,36 +22,44 @@ public class GameManager : MonoBehaviour {
 	
 	private void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            OpenStartDialog();
+
 	}
 
     private void OpenStartDialog()
     {
-        UfoGenerator.Instance.EnableGeneration(false);
-        Piman.Instance.enabled = false;
+        Wave wave = XmlReader.GetWave("0");
+        WaveManager.Instance.SetWave(wave);
+    }
 
-        Dialog dialog = XmlReader.GetDialog("startdialog");
+    public void OnWaveEnd(int id)
+    {
+        id++;
+        Debug.Log("Start wave " + id);
+        Wave wave = XmlReader.GetWave(id.ToString());
 
-        dialog.onDialogEnd = delegate ()
+        if (wave != null)
+            WaveManager.Instance.SetWave(wave);
+        else
         {
-            UfoGenerator.Instance.EnableGeneration(true);
-            Piman.Instance.enabled = true;
-        };
-
-        DialogWindow.Instance.OpenDialogWindow(dialog);
+            Dialog dialog = XmlReader.GetDialog("endgame");
+            dialog.onDialogEnd = delegate ()
+            {
+                SceneLoader.LoadScene(0);
+            };
+            DialogWindow.Instance.OpenDialogWindow(dialog);
+        }
     }
 
     public void GameOver()
     {
-        List<UFO> ufos = UfoGenerator.Instance.GetUFOs();
+        List<UFO> ufos = WaveManager.Instance.GetUFOs();
 
         for (int i = 0; i < ufos.Count; i++)
         {
             ufos[i].GoOut();
         }
 
-        UfoGenerator.Instance.enabled = false;
+        WaveManager.Instance.enabled = false;
 
         Dialog dialog = XmlReader.GetDialog("pimandead");
         dialog.onDialogEnd = delegate ()

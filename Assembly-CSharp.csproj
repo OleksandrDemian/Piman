@@ -69,8 +69,14 @@
      <Compile Include="Assets\Scripts\PopUp.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\Shadow.cs" />
-     <Compile Include="Assets\Scripts\UfoGenerator.cs" />
+     <Compile Include="Assets\Scripts\UI\ElementsBar.cs" />
+     <Compile Include="Assets\Scripts\WaveManager.cs" />
+     <Compile Include="Assets\Scripts\Waves\DelayEvent.cs" />
+     <Compile Include="Assets\Scripts\Waves\DialogEvent.cs" />
+     <Compile Include="Assets\Scripts\Waves\GenerateEnemyEvent.cs" />
+     <Compile Include="Assets\Scripts\Waves\WaitEvent.cs" />
      <Compile Include="Assets\Scripts\Waves\Wave.cs" />
+     <Compile Include="Assets\Scripts\Waves\WaveEvent.cs" />
      <Compile Include="Assets\Scripts\XmlReader.cs" />
      <None Include="Assets\Resources\Dialogs.xml" />
      <None Include="Assets\Resources\Waves.xml" />

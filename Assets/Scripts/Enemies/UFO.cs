@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class UFO : MonoBehaviour, IDamagable, IPoolable
 {
-    private Attribute health;
+    protected Attribute health;
     private float shootingDelay = 3f;
     private float nextShoot = 0f;
     private bool canShoot = true;
@@ -76,9 +75,10 @@ public class UFO : MonoBehaviour, IDamagable, IPoolable
         //shadow.SetX(transform.position.x);
         StartCoroutine(Arrive(position.y));
         nextShoot = Time.time + shootingDelay;
+        WaveManager.Instance.AddUFO(this);
     }
 
-    private void OnHealthValueChange(int value, int old)
+    protected void OnHealthValueChange(int value, int old)
     {
         if (value < 1)
             Disable();
@@ -90,7 +90,7 @@ public class UFO : MonoBehaviour, IDamagable, IPoolable
         //shadow.Disable();
         exp.Initialize(transform.position, 10);
 
-        UfoGenerator.Instance.RemoveActiveUFO(this);
+        WaveManager.Instance.RemoveActiveUFO(this);
         ObjectPool.Add(this);
     }
 }

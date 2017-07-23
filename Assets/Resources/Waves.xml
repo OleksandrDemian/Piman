@@ -1,13 +1,26 @@
 <waves>
 
   <wave id="0">
-    <enemy type="0" qta="5" />
-    <enemy type="1" qta ="3" />
+    <dialog ref="startdialog" />
+    <enemy type="0" qta="2" delay="1"/>
+    <wait />
+    <dialog ref="firstmoveufo" />
+    <enemy type="1" qta ="1" delay="1" />
+    <delay seconds="1" />
+    <enemy type="0" qta ="2" delay="0" />
+    <wait type="zeroenemy" />
+    <dialog ref ="wavezerodone" />
   </wave>
   
   <wave id="1">
-    <enemy type="0" qta="8" />
-    <enemy type="1" qta ="1" />
+    <delay seconds="1" />
+    <dialog ref="waveonestart" />
+    <enemy type="0" qta="2" delay="0" />
+    <wait />
+    <enemy type="0" qta="3" delay="0" />
+    <wait />
+    <enemy type="1" qta ="2" delay="1" />
+    <wait />
   </wave>
 
 </waves>

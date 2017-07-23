@@ -29,4 +29,49 @@
     </frase>
   </dialog>
 
+  <dialog id="wavezerodone">
+    <frase person="Jenny">
+      <text lang="en">Yaaaas Piman, you did it!</text>
+    </frase>
+    <frase person="Alfa Alien">
+      <text lang="en">Oh I see, fortunatly there are my army near your sector</text>
+    </frase>
+    <frase person="George">
+      <text lang="en">It's true, my radar is fully red by quantity of ariving aliens</text>
+    </frase>
+    <frase person="Jenny">
+      <text lang="en">Damn, Piman, I want you to show them what you can do with your rockets</text>
+    </frase>
+  </dialog>
+
+  <dialog id="waveonestart">
+    <frase person="Alfa Alien">
+      <text lang="en">Here we are!</text>
+    </frase>
+  </dialog>
+
+  <dialog id="firstmoveufo">
+    <frase person="Alfa Alien">
+      <text lang="en">TRY THISS!!!!</text>
+    </frase>
+  </dialog>
+
+  <dialog id="endgame">
+    <frase person="Alfa Alien">
+      <text lang="en">Heh, I thought tah we were better but ...</text>
+    </frase>
+    <frase person="Alfa Alien">
+      <text lang="en">GRrrrRRrrRR...</text>
+    </frase>
+    <frase person="Jenny">
+      <text lang="en">WE DID IT!!!</text>
+    </frase>
+    <frase person="Jenny">
+      <text lang="en">Piman, you are the best mathematician in UNIVERSE!</text>
+    </frase>
+    <frase person="George">
+      <text lang="en">Yeah, nice work</text>
+    </frase>
+  </dialog>
+  
 </dialogs>
