@@ -2,7 +2,9 @@
 using UnityEngine;
 
 public interface IPoolable {
-    GameObject GetGameObject { get; }
+    GameObject GetGameObject {
+        get;
+    }
 }
 
 public class ObjectPool : MonoBehaviour
@@ -34,7 +36,7 @@ public class ObjectPool : MonoBehaviour
         //Debug.Log("Request: " + typeof(T));
         for (int i = 0; i < Instance.poolable.Count; i++)
         {
-            if(Instance.poolable[i] is T)
+            if(Instance.poolable[i].GetType() == typeof(T))
             {
                 IPoolable go = Instance.poolable[i];
                 go.GetGameObject.SetActive(true);
@@ -45,41 +47,16 @@ public class ObjectPool : MonoBehaviour
 
         for (int i = 0; i < Instance.prefs.Length; i++)
         {
-            if (Instance.prefs[i].GetComponent<T>() != null)
+            T component = Instance.prefs[i].GetComponent<T>();
+            if (component == null)
+                continue;
+
+            if (component.GetType() == typeof(T))
             {
                 GameObject instance = Instantiate(Instance.prefs[i]);
-                //Debug.Log("Created!");
                 return instance.GetComponent<T>();
-            }
+            }   
         }
         throw new System.Exception("There is no " + typeof(T));
     }
-    
-    /*
-    public GameObject Get(EntityType type)
-    {
-        for (int i = 0; i < poolable.Count; i++)
-        {
-            if (poolable[i].Type == type)
-            {
-                GameObject go = poolable[i].Get;
-                go.SetActive(true);
-                poolable.Remove(poolable[i]);
-                return go;
-            }
-        }
-
-        switch (type) {
-            case EntityType.ASTEROID:
-                return Instantiate(asteroidPrephab);
-            case EntityType.SHIP:
-                return Instantiate(shipPrephab);
-            case EntityType.LASER:
-                return Instantiate(laserPrephab);
-            case EntityType.DAMAGEPOPUP:
-                return Instantiate(damagePopUpPrephab);
-        }
-        return null;
-    }
-    */
 }

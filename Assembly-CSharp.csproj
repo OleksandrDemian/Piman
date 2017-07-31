@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Dialog\Dialog.cs" />
      <Compile Include="Assets\Scripts\Dialog\DialogWindow.cs" />
      <Compile Include="Assets\Scripts\Dialog\Frase.cs" />
+     <Compile Include="Assets\Scripts\Enemies\MinesUFO.cs" />
      <Compile Include="Assets\Scripts\Enemies\MovingUFO.cs" />
      <Compile Include="Assets\Scripts\Enemies\UFO.cs" />
      <Compile Include="Assets\Scripts\ExplosionManager.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\IDamagable.cs" />
      <Compile Include="Assets\Scripts\IDamageListener.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Mine.cs" />
      <Compile Include="Assets\Scripts\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\PIDamage.cs" />
      <Compile Include="Assets\Scripts\Piman.cs" />

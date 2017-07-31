@@ -2,6 +2,8 @@
 
   <wave id="0">
     <dialog ref="startdialog" />
+    <enemy type="2" qta="2" delay="1"/>
+    <wait />
     <enemy type="0" qta="2" delay="1"/>
     <wait />
     <dialog ref="firstmoveufo" />

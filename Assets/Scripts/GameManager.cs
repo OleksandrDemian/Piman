@@ -1,15 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : MonoBehaviour
+{
     public static GameManager Instance
     {
         get;
         private set;
     }
 
-	private void Awake ()
+    public Vector3 MapBounds
+    {
+        get;
+        private set;
+    }
+
+    private void Awake ()
     {
         Instance = this;
 	}
@@ -17,6 +23,7 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         OpenStartDialog();
+        GetBounds();
         Piman.Instance.onDead = GameOver;
     }
 	
@@ -67,5 +74,20 @@ public class GameManager : MonoBehaviour {
             SceneLoader.LoadScene(0);
         };
         DialogWindow.Instance.OpenDialogWindow(dialog);
+    }
+
+    private void GetBounds()
+    {
+        MapBounds = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0));
+    }
+
+    public Vector3 GetRandomPosition(bool up)
+    {
+        return new Vector3(GetRandomX(), Random.Range(up ? 0 : -MapBounds.y, MapBounds.y), 0);
+    }
+
+    public float GetRandomX()
+    {
+        return Random.Range(-MapBounds.x, MapBounds.x);
     }
 }

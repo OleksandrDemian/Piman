@@ -4,8 +4,8 @@ using UnityEngine;
 public class UFO : MonoBehaviour, IDamagable, IPoolable
 {
     protected Attribute health;
-    private float shootingDelay = 3f;
-    private float nextShoot = 0f;
+    protected float shootingDelay = 3f;
+    protected float nextShoot = 0f;
     private bool canShoot = true;
     //private Shadow shadow;
 
@@ -52,7 +52,7 @@ public class UFO : MonoBehaviour, IDamagable, IPoolable
             Shoot();
 	}
 
-    private void Shoot()
+    protected virtual void Shoot()
     {
         if (!canShoot)
             return;

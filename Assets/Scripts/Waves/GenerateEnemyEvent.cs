@@ -5,6 +5,7 @@ public enum UFOType
 {
     UFO,
     MOVINGUFO,
+    MINEUFO,
     NONE
 }
 
@@ -33,7 +34,7 @@ public class GenerateEnemyEvent : WaveEvent
             yield return new WaitForSeconds(delay);
 
             UFO ufo;
-
+            Debug.Log("I'm creating: " + type);
             switch (type)
             {
                 case UFOType.UFO:
@@ -42,6 +43,11 @@ public class GenerateEnemyEvent : WaveEvent
                     break;
                 case UFOType.MOVINGUFO:
                     ufo = ObjectPool.Get<MovingUFO>();
+                    ufo.Initialize(RandomPosition());
+                    break;
+
+                case UFOType.MINEUFO:
+                    ufo = ObjectPool.Get<MinesUFO>();
                     ufo.Initialize(RandomPosition());
                     break;
 
@@ -54,6 +60,6 @@ public class GenerateEnemyEvent : WaveEvent
 
     private Vector3 RandomPosition()
     {
-        return new Vector3(Random.Range(-20, 20), Random.Range(5, 10), 0);
+        return GameManager.Instance.GetRandomPosition(true);
     }
 }

@@ -69,7 +69,7 @@ public class Character : MonoBehaviour
         */
 
         Vector2 point = new Vector2(transform.position.x, transform.position.y - radius - .12f);
-        isGrounded = Physics2D.OverlapCircle(point, .1f);
+        isGrounded = Physics2D.OverlapCircle(point, .1f, LayerMask.GetMask("Ground"));
     }
 
     protected void Jump(float force)

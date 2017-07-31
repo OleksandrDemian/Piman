@@ -69,6 +69,7 @@ public class XmlReader
                 break;
             case "enemy":
                 int type = int.Parse(node.Attributes["type"].InnerText);
+                Debug.Log("Type: " + type);
                 int qta = int.Parse(node.Attributes["qta"].InnerText);
                 int delay = int.Parse(node.Attributes["delay"].InnerText);
                 wEvent = new GenerateEnemyEvent((UFOType)type, qta, delay);
