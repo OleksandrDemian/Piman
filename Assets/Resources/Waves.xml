@@ -2,8 +2,6 @@
 
   <wave id="0">
     <dialog ref="startdialog" />
-    <enemy type="2" qta="2" delay="1"/>
-    <wait />
     <enemy type="0" qta="2" delay="1"/>
     <wait />
     <dialog ref="firstmoveufo" />
@@ -24,5 +22,16 @@
     <enemy type="1" qta ="2" delay="1" />
     <wait />
   </wave>
+      
+    <wave id="2">
+      <delay seconds="1" />
+      <dialog ref="minesaliens" />
+      <enemy type="2" qta="2" delay="1" />
+      <wait />
+      <enemy type="0" qta="3" delay="1" />
+      <enemy type="2" qta="2" delay="0" />
+      <enemy type="1" qta="1" delay="0" />
+      <wait />
+    </wave>
 
 </waves>

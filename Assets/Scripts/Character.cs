@@ -2,17 +2,22 @@
 
 public class Character : MonoBehaviour
 {
+    [SerializeField]
+    private LayerMask ground;
+
     protected Vector3 movement;
     protected int speed = 10;
     protected bool isGrounded = false;
     protected float radius = 0.5f;
     protected bool facingRight = true;
     protected Animator animator;
+    protected Rigidbody2D rb2D;
 
     protected virtual void Start ()
     {
         movement = Vector3.zero;
         animator = GetComponent<Animator>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Update()
@@ -22,11 +27,14 @@ public class Character : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if(movement.magnitude > .1f)
-        {
+        if(movement.y < 0)
             CheckGround();
+
+        if (movement.magnitude > .1f)
+        {
             CheckDirection();
-            transform.Translate(movement * speed * Time.deltaTime);
+            //transform.Translate(movement * speed * Time.deltaTime);
+            rb2D.MovePosition(transform.position + movement * speed * Time.deltaTime);
         }
     }
 
@@ -58,26 +66,18 @@ public class Character : MonoBehaviour
 
     protected void CheckGround()
     {
-        /*
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
-        if (hit.collider != null)
-        {
-            float distance = Mathf.Abs(hit.point.y - transform.position.y);
-            isGrounded = distance < radius ? true : false;
-            transform.position = new Vector3(transform.position.x, hit.point.y + radius, transform.position.z);
-        }
-        */
-
-        Vector2 point = new Vector2(transform.position.x, transform.position.y - radius - .12f);
-        isGrounded = Physics2D.OverlapCircle(point, .1f, LayerMask.GetMask("Ground"));
+        Vector2 point = new Vector2(transform.position.x, transform.position.y - radius - 0.12f);
+        isGrounded = Physics2D.OverlapCircle(point, .1f, ground);
     }
 
     protected void Jump(float force)
     {
+        Debug.Log(isGrounded);
         if (isGrounded)
         {
+            Debug.Log("Jump!");
             movement.y = force;
-            transform.position = transform.position + Vector3.up;
+            isGrounded = false;
         }
     }
 }

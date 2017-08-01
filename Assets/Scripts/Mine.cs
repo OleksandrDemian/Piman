@@ -66,7 +66,7 @@ public class Mine : MonoBehaviour, IPoolable, IDamagable
         IDamagable target = col.GetComponent<IDamagable>();
         if (target != null)
         {
-            target.Damage(6);
+            target.Damage(new Damage(gameObject, 6));
         }
 
         Explode();
@@ -77,7 +77,7 @@ public class Mine : MonoBehaviour, IPoolable, IDamagable
         ObjectPool.Add(this);
     }
 
-    public void Damage(int amount)
+    public void Damage(Damage damage)
     {
         Explode();
     }

@@ -47,12 +47,13 @@ public class MovingUFO : UFO
         int delta = pimanPos.position.x > transform.position.x ? 7 : -7;
 
         Vector2 targetPos = new Vector2(transform.position.x + delta, transform.position.y);
+        Damage damage = new Damage(gameObject, 1);
         while (transform.position.x != targetPos.x)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * 8);
             if (Mathf.Abs(transform.position.x - pimanPos.position.x) < 0.5f)
             {
-                Piman.Instance.Damage(1);
+                Piman.Instance.Damage(damage);
             }
             yield return new WaitForEndOfFrame();
         }

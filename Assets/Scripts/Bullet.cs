@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour, IPoolable
         IDamagable target = col.GetComponent<IDamagable>();
         if (target != null)
         {
-            target.Damage(damage);
+            target.Damage(new Damage(gameObject, damage));
         }
 
         Disable();

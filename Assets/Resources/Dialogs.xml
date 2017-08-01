@@ -73,5 +73,11 @@
       <text lang="en">Yeah, nice work</text>
     </frase>
   </dialog>
+
+  <dialog id="minesaliens">
+    <frase person="Alfa Alien">
+      <text lang="en">Take also this!</text>
+    </frase>
+  </dialog>
   
 </dialogs>

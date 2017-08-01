@@ -25,7 +25,7 @@ public class Piman : Character, IDamagable, IDamageListener
         private set;
     }
 
-    public void Damage(int amount)
+    public void Damage(Damage damage)
     {
         if (health.Value < 1)
             return;
@@ -63,20 +63,26 @@ public class Piman : Character, IDamagable, IDamageListener
 	
 	protected override void Update ()
     {
-        base.Update();
+        float input = isShooting ? 0 : Input.GetAxis("Horizontal");
+        Move(input);
+
+        if (Input.GetKeyDown(jumpKey))
+            Jump(1.5f);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PoweUp powerUp = ObjectPool.Get<PoweUp>();
+            powerUp.Initialize(Random.Range(0f, 1f) < .5f ? true : false);
+        }
+        ManageShooting();
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
 
         if (transform.position.y < -13f)
             health.Value = 0;
-
-        float input = isShooting ? 0 : Input.GetAxis("Horizontal");
-        //animator.SetFloat("speed", Mathf.Abs(input));
-        Move(input);
-
-        
-        if (Input.GetKeyDown(jumpKey))
-            Jump(1);
-            
-        ManageShooting();
     }
 
     private void ManageShooting()

@@ -17,10 +17,10 @@ public class UFO : MonoBehaviour, IDamagable, IPoolable
         }
     }
 
-    public void Damage(int amount)
+    public void Damage(Damage damage)
     {
-        PopUp.ShowText(transform.position, amount.ToString());
-        health.Value -= amount;
+        PopUp.ShowText(transform.position, damage.GetDamage().ToString());
+        health.Value -= damage.GetDamage();
         health.onValueChange = OnHealthValueChange;
     }
 
