@@ -5,6 +5,7 @@ public class PoweUp : MonoBehaviour, IPoolable, IDamagable
     private Vector2 direction = Vector2.zero;
     private int speed = 5;
     private int border = 10;
+    private PowerUpEffect effect;
 
     public GameObject GetGameObject
     {
@@ -16,7 +17,15 @@ public class PoweUp : MonoBehaviour, IPoolable, IDamagable
 
     public void Damage(Damage damage)
     {
+        if (effect != null)
+            effect.Trigger(damage.GetParent());
+
         Disable();
+    }
+
+    public void SetEffect(PowerUpEffect effect)
+    {
+        this.effect = effect;
     }
 
     private void Disable()

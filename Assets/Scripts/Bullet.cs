@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour, IPoolable
     private Rigidbody2D rb2D;
     private int speedMult = 35;
     private float timer = 2f;
-    private int damage = 3;
     private bool isPlayer = false;
+    private Damage damage;
 
     public GameObject GetGameObject
     {
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour, IPoolable
         timer = 2f;
     }
 
-    public void SetDamage(int damage)
+    public void SetDamage(Damage damage)
     {
         this.damage = damage;
     }
@@ -59,10 +59,13 @@ public class Bullet : MonoBehaviour, IPoolable
         ExplosionManager exp = ObjectPool.Get<ExplosionManager>();
         exp.Initialize(transform.position, 4);
 
+        if (damage == null)
+            return;
+
         IDamagable target = col.GetComponent<IDamagable>();
         if (target != null)
         {
-            target.Damage(new Damage(gameObject, damage));
+            target.Damage(damage);
         }
 
         Disable();
@@ -70,6 +73,7 @@ public class Bullet : MonoBehaviour, IPoolable
 
     private void Disable()
     {
+        damage = null;
         isPlayer = false;
         ObjectPool.Add(this);
     }

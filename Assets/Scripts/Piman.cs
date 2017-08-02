@@ -73,6 +73,7 @@ public class Piman : Character, IDamagable, IDamageListener
         {
             PoweUp powerUp = ObjectPool.Get<PoweUp>();
             powerUp.Initialize(Random.Range(0f, 1f) < .5f ? true : false);
+            powerUp.SetEffect(new ResetHealthPowerUp());
         }
         ManageShooting();
     }
@@ -120,12 +121,17 @@ public class Piman : Character, IDamagable, IDamageListener
 
         Bullet bullet = ObjectPool.Get<Bullet>();
         bullet.IsPlayer();
-        bullet.SetDamage(damage.GetNext());
+        bullet.SetDamage(new Damage(gameObject, damage.GetNext()));
         bullet.Initialize(fireHotspot.transform.position, direction);
     }
 
     public void OnDamageResult(DamageResult result)
     {
-        
+
+    }
+
+    public Attribute GetHealth()
+    {
+        return health;
     }
 }

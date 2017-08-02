@@ -61,7 +61,7 @@ public class UFO : MonoBehaviour, IDamagable, IPoolable
         Vector3 direction = (targetPos - transform.position).normalized;
         Bullet bullet = ObjectPool.Get<Bullet>();
         bullet.Initialize(transform.position - transform.up, direction);
-        bullet.SetDamage(1);
+        bullet.SetDamage(new Damage(gameObject, 1));
         nextShoot = Time.time + shootingDelay;
     }
 

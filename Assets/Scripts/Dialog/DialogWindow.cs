@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogWindow : MonoBehaviour
 {
+    [SerializeField]
+    private KeyCode nextKey;
+
     private Text personName;
     private Text text;
     private Dialog dialog;
+    private IEnumerator spaceListener;
 
     public static DialogWindow Instance
     {
@@ -17,6 +22,7 @@ public class DialogWindow : MonoBehaviour
     {
         gameObject.SetActive(true);
         this.dialog = dialog;
+        StartCoroutine(spaceListener);
         Next();
     }
 
@@ -24,10 +30,18 @@ public class DialogWindow : MonoBehaviour
     {
         Frase frase = dialog.GetNextFrase();
         if (frase == null)
+        {
+            StopCoroutine(spaceListener);
             return;
+        }
 
         personName.text = frase.PersonName;
         text.text = frase.Text;
+    }
+
+    public void Skip()
+    {
+
     }
 
 	private void Awake ()
@@ -36,17 +50,18 @@ public class DialogWindow : MonoBehaviour
         personName = transform.FindChild("PersonName").GetComponent<Text>();
         text = transform.FindChild("DialogText").GetComponent<Text>();
         gameObject.SetActive(false);
+        spaceListener = ListenForKey();
     }
 
-    private void Start()
+    private IEnumerator ListenForKey()
     {
-        
+        for (;;)
+        {
+            if (Input.GetKeyDown(nextKey))
+                Next();
+            yield return null;
+        }
     }
-
-    private void Update ()
-    {
-		
-	}
 
     public void Close()
     {
