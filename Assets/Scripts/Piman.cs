@@ -10,6 +10,8 @@ public class Piman : Character, IDamagable, IDamageListener
     private PIDamage damage;
     private Attribute health;
 
+    public LayerMask enemies;
+
     public PimanEvent onDead;
 
     [SerializeField]
@@ -46,6 +48,8 @@ public class Piman : Character, IDamagable, IDamageListener
             if (onDead != null)
                 onDead();
             gameObject.SetActive(false);
+            //animator.SetBool("death", true);
+            //enabled = false;
         }
     }
 
@@ -64,24 +68,25 @@ public class Piman : Character, IDamagable, IDamageListener
 	protected override void Update ()
     {
         float input = isShooting ? 0 : Input.GetAxis("Horizontal");
+
         Move(input);
 
         if (Input.GetKeyDown(jumpKey))
-            Jump(1.5f);
+            Jump(2f);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            PoweUp powerUp = ObjectPool.Get<PoweUp>();
-            powerUp.Initialize(Random.Range(0f, 1f) < .5f ? true : false);
-            powerUp.SetEffect(new ResetHealthPowerUp());
+            MinesUFO ufo = ObjectPool.Get<MinesUFO>();
+            ufo.Initialize(GameManager.Instance.GetRandomPosition(true));
         }
+
         ManageShooting();
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-
+        //Debug.Log(FindNearestEnemy(transform.position, 15));
         if (transform.position.y < -13f)
             health.Value = 0;
     }
@@ -134,4 +139,34 @@ public class Piman : Character, IDamagable, IDamageListener
     {
         return health;
     }
+    
+    /*
+    private GameObject FindNearestEnemy(Vector3 position, float radius)
+    {
+        Collider2D[] colliders = new Collider2D[10];
+        Physics2D.OverlapCircleNonAlloc(position, radius, colliders, enemies);
+        
+        float distance = Mathf.Infinity;
+        GameObject nearest = null;
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i] == null)
+                break;
+
+            float curDistance = Vector2.Distance(position, colliders[i].transform.position);
+
+            Debug.Log("Distance: " + curDistance + "; need: " + distance + "; obj: " + colliders[i].name);
+            if (curDistance >= distance)
+                continue;
+
+            if (colliders[i].gameObject != gameObject)
+            {
+                distance = curDistance;
+                nearest = colliders[i].gameObject;
+            }
+        }
+        return nearest;
+    }
+    */
 }

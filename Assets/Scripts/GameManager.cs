@@ -15,33 +15,35 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
-    private void Awake ()
+    private void Awake()
     {
         Instance = this;
-	}
+    }
 
     private void Start()
     {
-        OpenStartDialog();
+        //OpenStartDialog();
         GetBounds();
         Piman.Instance.onDead = GameOver;
+
+        int level = PlayerPrefs.GetInt("Level", 0);
+        OpenWave(level);
     }
-	
-	private void Update ()
+
+    private void Update()
     {
 
-	}
-
-    private void OpenStartDialog()
-    {
-        Wave wave = XmlReader.GetWave("0");
-        WaveManager.Instance.SetWave(wave);
     }
 
     public void OnWaveEnd(int id)
     {
         id++;
-        Debug.Log("Start wave " + id);
+        SaveGame(id);
+        OpenWave(id);
+    }
+
+    private void OpenWave(int id)
+    {
         Wave wave = XmlReader.GetWave(id.ToString());
 
         if (wave != null)
@@ -83,11 +85,17 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetRandomPosition(bool up)
     {
-        return new Vector3(GetRandomX(), Random.Range(up ? 0 : -MapBounds.y, MapBounds.y), 0);
+        return new Vector3(GetRandomX(), Random.Range(up ? 0 : -MapBounds.y, MapBounds.y), 0) * .8f;
     }
 
     public float GetRandomX()
     {
         return Random.Range(-MapBounds.x, MapBounds.x);
+    }
+
+    private void SaveGame(int level)
+    {
+        Debug.Log("Saved: " + level);
+        PlayerPrefs.SetInt("Level", level);
     }
 }

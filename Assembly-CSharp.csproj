@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Attributes\AttributeModifier.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\Companions\Companion.cs" />
      <Compile Include="Assets\Scripts\Damage.cs" />
      <Compile Include="Assets\Scripts\DamageResult.cs" />
      <Compile Include="Assets\Scripts\Dialog\Dialog.cs" />
@@ -62,8 +63,10 @@
      <Compile Include="Assets\Scripts\ExplosionParticle.cs" />
      <Compile Include="Assets\Scripts\FireHotspot.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HumanDeathAnimatorBehaviour.cs" />
      <Compile Include="Assets\Scripts\IDamagable.cs" />
      <Compile Include="Assets\Scripts\IDamageListener.cs" />
+     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Mine.cs" />
      <Compile Include="Assets\Scripts\ObjectPool.cs" />
@@ -80,6 +83,7 @@
      <Compile Include="Assets\Scripts\Waves\DelayEvent.cs" />
      <Compile Include="Assets\Scripts\Waves\DialogEvent.cs" />
      <Compile Include="Assets\Scripts\Waves\GenerateEnemyEvent.cs" />
+     <Compile Include="Assets\Scripts\Waves\PowerUpEvent.cs" />
      <Compile Include="Assets\Scripts\Waves\WaitEvent.cs" />
      <Compile Include="Assets\Scripts\Waves\Wave.cs" />
      <Compile Include="Assets\Scripts\Waves\WaveEvent.cs" />

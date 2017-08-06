@@ -1,12 +1,22 @@
+<!-- 
+  enemy:
+    0 -> satndart
+    1 -> moving/laser
+    2 -> mines
+    
+  bonus:
+    0 -> reset health
+-->
+
 <waves>
 
   <wave id="0">
     <dialog ref="startdialog" />
     <enemy type="0" qta="2" delay="1"/>
     <wait />
-    <dialog ref="firstmoveufo" />
-    <enemy type="1" qta ="1" delay="1" />
-    <delay seconds="1" />
+    <enemy type="0" qta="4" delay="3"/>
+    <delay seconds="3" />
+    <powerup type="0" />
     <enemy type="0" qta ="2" delay="0" />
     <wait type="zeroenemy" />
     <dialog ref ="wavezerodone" />
@@ -14,6 +24,12 @@
   
   <wave id="1">
     <delay seconds="1" />
+    <dialog ref="firstmoveufo" />
+    <enemy type="1" qta ="1" delay="1" />
+    <wait />
+  </wave>
+      
+  <wave id="2">
     <dialog ref="waveonestart" />
     <enemy type="0" qta="2" delay="0" />
     <wait />
@@ -22,16 +38,17 @@
     <enemy type="1" qta ="2" delay="1" />
     <wait />
   </wave>
-      
-    <wave id="2">
-      <delay seconds="1" />
-      <dialog ref="minesaliens" />
-      <enemy type="2" qta="2" delay="1" />
-      <wait />
-      <enemy type="0" qta="3" delay="1" />
-      <enemy type="2" qta="2" delay="0" />
-      <enemy type="1" qta="1" delay="0" />
-      <wait />
-    </wave>
+
+  <wave id="3">
+    <delay seconds="1" />
+    <dialog ref="minesaliens" />
+    <powerup type="0" />
+    <enemy type="2" qta="2" delay="1" />
+    <wait />
+    <enemy type="0" qta="3" delay="1" />
+    <enemy type="2" qta="2" delay="0" />
+    <enemy type="1" qta="1" delay="0" />
+    <wait />
+  </wave>
 
 </waves>

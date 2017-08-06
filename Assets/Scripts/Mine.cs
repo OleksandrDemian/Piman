@@ -54,8 +54,18 @@ public class Mine : MonoBehaviour, IPoolable, IDamagable
 
     protected void CheckGround()
     {
-        Vector2 point = new Vector2(transform.position.x, transform.position.y - 1f - .12f);
-        isGrounded = Physics2D.OverlapCircle(point, .1f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit;
+
+        hit = Physics2D.Raycast(transform.position, -Vector2.up, 1, LayerMask.GetMask("Ground"));
+
+        isGrounded = hit.collider == null ? false : true;
+
+        //Vector2 point = new Vector2(transform.position.x, transform.position.y - 1f - .12f);
+        //isGrounded = Physics2D.OverlapCircle(point, .1f, LayerMask.GetMask("Ground"));
+        if (isGrounded)
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y + 1, 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

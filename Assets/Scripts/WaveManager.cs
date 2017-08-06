@@ -35,7 +35,6 @@ public class WaveManager : MonoBehaviour
 
     public void NextEvent()
     {
-        Debug.Log("Next event!");
         WaveEvent wevent = wave.GetNext();
         if (wevent != null)
         {
@@ -43,7 +42,6 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wave ended");
             GameManager.Instance.OnWaveEnd(wave.GetID());
         }
     }

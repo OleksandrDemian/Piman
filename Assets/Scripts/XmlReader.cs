@@ -81,6 +81,10 @@ public class XmlReader
                 int time = int.Parse(node.Attributes["seconds"].InnerText);
                 wEvent = new DelayEvent(time);
                 break;
+            case "powerup":
+                //int ptype = int.Parse(node.Attributes["type"].InnerText);
+                wEvent = new PowerUpEvent();
+                break;
         }
 
         return wEvent;

@@ -4,6 +4,8 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     private LayerMask ground;
+    [SerializeField][Range(1, 10)]
+    protected float gravityModifier = 3f;
 
     protected Vector3 movement;
     protected int speed = 10;
@@ -33,17 +35,17 @@ public class Character : MonoBehaviour
         if (movement.magnitude > .1f)
         {
             CheckDirection();
-            //transform.Translate(movement * speed * Time.deltaTime);
             rb2D.MovePosition(transform.position + movement * speed * Time.deltaTime);
         }
     }
 
     protected void Move(float velocity)
     {
+        animator.SetFloat("speed", Mathf.Abs(velocity));
         movement.x = velocity;
 
         if (!isGrounded)
-            movement.y -= Time.deltaTime * 2;
+            movement.y -= Time.deltaTime * gravityModifier;
         else
             movement.y = 0;
     }
@@ -68,14 +70,15 @@ public class Character : MonoBehaviour
     {
         Vector2 point = new Vector2(transform.position.x, transform.position.y - radius - 0.12f);
         isGrounded = Physics2D.OverlapCircle(point, .1f, ground);
+        if(isGrounded)
+            animator.SetBool("jump", false);
     }
 
     protected void Jump(float force)
     {
-        Debug.Log(isGrounded);
         if (isGrounded)
         {
-            Debug.Log("Jump!");
+            animator.SetBool("jump", true);
             movement.y = force;
             isGrounded = false;
         }
